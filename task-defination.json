@@ -8,7 +8,7 @@
   "containerDefinitions": [
     {
       "name": "employee-app",
-      "image": "145523123074.dkr.ecr.us-east-1.amazonaws.com/employee-service:1",
+      "image": "145523123074.dkr.ecr.us-east-1.amazonaws.com/employee-service:<build-number>",
       "essential": true,
       "portMappings": [
         {
