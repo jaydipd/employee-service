@@ -40,6 +40,5 @@ public class EmployeeController {
     @PostMapping(value = "/employee")
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
         return ResponseEntity.ok(employeeRepository.save(employee));
-
     }
 }
