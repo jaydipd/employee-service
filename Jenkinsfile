@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Push to ECR') {
             steps {
-                bat 'aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin %ECR_REGISTRY%'
+                bat 'aws ecr get-login-password --region %AWS_DEFAULT_REGION% | docker login --username AWS --password-stdin %ECR_REGISTRY%'
                 bat 'docker push %ECR_REGISTRY%/%REPO_NAME%:%BUILD_NUMBER%'
             }
         }
