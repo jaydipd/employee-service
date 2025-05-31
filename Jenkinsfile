@@ -1,14 +1,14 @@
 pipeline {
     agent any
     environment {
-        AWS_DEFAULT_REGION = 'us-east-1'
-        ECR_REGISTRY = '<your-account-id>.dkr.ecr.us-east-1.amazonaws.com'
+        AWS_DEFAULT_REGION = 'ap-south-1'
+        ECR_REGISTRY = '145523123074.dkr.ecr.ap-south-1.amazonaws.com'
         REPO_NAME = 'employee-service'
     }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: '<your-git-repo-url>'
+                git branch: 'master', url: 'https://github.com/jaydipd/employee-service.git'
             }
         }
         stage('Terraform Init & Plan') {
