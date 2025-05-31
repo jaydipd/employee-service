@@ -54,7 +54,7 @@ pipeline {
        }
        stage('Destroy'){
           steps {
-                        bat 'cd terraform && terraform destroy -auto-approve tfplan'
+                        bat 'cd terraform && terraform destroy -auto-approve'
                     }
         }
     }
