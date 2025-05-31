@@ -38,21 +38,24 @@ pipeline {
                 bat 'docker push %ECR_REGISTRY%/%REPO_NAME%:%BUILD_NUMBER%'
             }
         }
-        stage('Update ECS Service') {
-            steps {
-                bat '''
-                aws ecs update-service \
-                    --cluster employee-cluster \
-                    --service employee-service \
-                    --task-definition $(aws ecs register-task-definition --cli-input-json file://task-definition.json | jq -r '.taskDefinition.taskDefinitionArn') \
-                    --force-new-deployment
-                '''
-            }
-        }
-        stage('Destroy'){
+       stage('Update ECS Service') {
+           steps {
+               powershell '''
+               $taskDef = aws ecs register-task-definition --cli-input-json file://task-definition.json | ConvertFrom-Json
+               $taskDefArn = $taskDef.taskDefinition.taskDefinitionArn
+
+               aws ecs update-service `
+                   --cluster employee-cluster `
+                   --service employee-service `
+                   --task-definition $taskDefArn `
+                   --force-new-deployment
+               '''
+           }
+       }
+      /*   stage('Destroy'){
           steps {
                         bat 'cd terraform && terraform destroy -auto-approve tfplan'
                     }
-        }
+        } */
     }
 }
