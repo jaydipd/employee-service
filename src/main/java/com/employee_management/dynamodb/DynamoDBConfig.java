@@ -16,7 +16,7 @@ public class DynamoDBConfig {
     public AmazonDynamoDB amazonDynamoDB() {
         return AmazonDynamoDBClientBuilder.standard()
                 .withCredentials(DefaultAWSCredentialsProviderChain.getInstance())
-                .withRegion(region) // Replace with your actual AWS region
+                .withRegion(region)
                 .build();
     }
 }
