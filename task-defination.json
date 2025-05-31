@@ -4,11 +4,11 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "256",
   "memory": "512",
-  "executionRoleArn": "arn:aws:iam::<your-account-id>:role/ecsTaskExecutionRole",
+  "executionRoleArn": "arn:aws:iam::145523123074:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "name": "employee-app",
-      "image": "<your-account-id>.dkr.ecr.us-east-1.amazonaws.com/employee-service:<build-number>",
+      "image": "145523123074.dkr.ecr.us-east-1.amazonaws.com/employee-service:1",
       "essential": true,
       "portMappings": [
         {
@@ -19,7 +19,7 @@
       "environment": [
         {
           "name": "AWS_REGION",
-          "value": "us-east-1"
+          "value": "ap-south-1"
         }
       ]
     }
