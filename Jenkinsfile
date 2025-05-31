@@ -13,14 +13,13 @@ pipeline {
         }
         stage('Terraform Init & Plan') {
             steps {
-                bat 'cd terraform'
-                bat 'terraform init'
-                bat 'terraform plan -out=tfplan'
+                bat 'cd terraform && terraform init'
+                bat 'cd terraform && terraform plan -out=tfplan'
             }
         }
         stage('Terraform Apply') {
             steps {
-                bat 'terraform apply -auto-approve tfplan'
+                bat 'cd terraform && terraform apply -auto-approve tfplan'
             }
         }
         stage('Build') {
