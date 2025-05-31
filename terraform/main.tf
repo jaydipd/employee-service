@@ -124,7 +124,7 @@ resource "aws_ecs_cluster" "employee_cluster" {
 
 # EC2 Instance for ECS
 resource "aws_instance" "ecs_instance" {
- # ami                    = "ami-0c55b159cbfafe1f0" # Amazon Linux 2 AMI
+  ami                    = "ami-0af9569868786b23a" # Amazon Linux 2 AMI
   instance_type          = "t2.micro"
   subnet_id              = aws_subnet.public.id
   vpc_security_group_ids = [aws_security_group.ecs_sg.id]
