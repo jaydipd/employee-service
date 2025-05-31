@@ -41,7 +41,7 @@ pipeline {
        stage('Update ECS Service') {
            steps {
                powershell '''
-               $taskDef = aws ecs register-task-definition --cli-input-json file://C:/ProgramData/Jenkins/.jenkins/workspace/employee-crud-pipeline/task-definition.json | ConvertFrom-Json
+               $taskDef = aws ecs register-task-definition --cli-input-json file://task-defination.json | ConvertFrom-Json
                $taskDefArn = $taskDef.taskDefinition.taskDefinitionArn
 
                aws ecs update-service `
