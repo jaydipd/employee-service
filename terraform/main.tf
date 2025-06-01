@@ -182,7 +182,7 @@ resource "aws_ecs_task_definition" "employee_task" {
   container_definitions = jsonencode([
     {
       name      = "employee-container"
-      image     = "145523123074.dkr.ecr.ap-south-1.amazonaws.com/employee-service:latest"
+      image     = "145523123074.dkr.ecr.ap-south-1.amazonaws.com/employee-service:21"
       essential = true
       portMappings = [
         {
