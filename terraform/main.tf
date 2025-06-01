@@ -85,7 +85,8 @@ resource "aws_dynamodb_table" "employee_table" {
 }
 
 module "dynamodb_table" {
-  source            = "git::https://github.com/jaydipd/dynamodb-module.git?ref=master"
+ # source            = "git::https://github.com/jaydipd/dynamodb-module.git?ref=master"
+  source = "./modules/dynamodb_table"
   table_name        = "test-table"
   hash_key          = "id"
   hash_key_type     = "S"
