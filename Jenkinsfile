@@ -52,10 +52,10 @@ pipeline {
                '''
            }
        }
-        /* stage('Destroy'){
+         stage('Destroy'){
           steps {
                         bat 'cd terraform && terraform destroy -auto-approve'
                     }
-        } */
+        }
     }
 }
