@@ -84,6 +84,25 @@ resource "aws_dynamodb_table" "employee_table" {
   }
 }
 
+module "dynamodb_table" {
+  source            = "git::https://github.com/jaydipd/dynamodb-module.git?ref=master"
+  table_name        = "test-table"
+  hash_key          = "id"
+  hash_key_type     = "S"
+  range_key         = "timestamp"
+  range_key_type    = "N"
+  billing_mode      = "PAY_PER_REQUEST"
+  ttl_enabled       = true
+  ttl_attribute_name = "ttl"
+  tags = {
+    Environment = "Test"
+  }
+}
+
+output "table_arn" {
+  value = module.dynamodb_table.table_arn
+}
+
 # IAM Role for ECS Tasks
 resource "aws_iam_role" "ecs_task_role" {
   name = "employee-ecs-task-role"
