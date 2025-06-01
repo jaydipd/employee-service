@@ -5,6 +5,7 @@
   "cpu": "256",
   "memory": "512",
   "executionRoleArn": "arn:aws:iam::145523123074:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::145523123074:role/ecsTaskRole",
   "containerDefinitions": [
     {
       "name": "employee-app",
@@ -13,7 +14,7 @@
       "portMappings": [
         {
           "containerPort": 8080,
-          "hostPort": 8080
+          "hostPort": 0
         }
       ],
       "environment": [
@@ -21,7 +22,22 @@
           "name": "AWS_REGION",
           "value": "ap-south-1"
         }
-      ]
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/employee-task",
+          "awslogs-region": "ap-south-1",
+          "awslogs-stream-prefix": "employee-app"
+        }
+      },
+      "healthCheck": {
+        "command": ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"],
+        "interval": 30,
+        "timeout": 5,
+        "retries": 3,
+        "startPeriod": 60
+      }
     }
   ]
 }
