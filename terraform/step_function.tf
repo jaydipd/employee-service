@@ -31,7 +31,7 @@ resource "aws_iam_role_policy" "step_function_policy" {
 }
 
 data "local_file" "state_machine_def" {
-  filename = "${path.module}/state_machine_definition.json"
+  filename = "${path.module}/employee_step_function_definition.json"
 }
 # Step Function state machine
 module "step_function_employee" {
