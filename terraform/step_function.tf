@@ -34,7 +34,7 @@ data "local_file" "state_machine_def" {
   filename = "${path.module}/state_machine_definition.json"
 }
 # Step Function state machine
-module "step_function" {
+module "step_function_employee" {
   source   = "git::https://github.com/jaydipd/step-function-module.git?ref=master"
   name     = "EmployeeWorkflow"
   role_arn = aws_iam_role.step_function_role.arn
