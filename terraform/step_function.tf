@@ -34,5 +34,5 @@ resource "aws_iam_role_policy" "step_function_policy" {
 resource "aws_sfn_state_machine" "employee_workflow" {
   name     = "EmployeeProcessingWorkflow"
   role_arn = aws_iam_role.step_function_role.arn
-  definition = file("step_function_definition.json")
+  definition = file("employee_step_function_definition.json")
 }
