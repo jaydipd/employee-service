@@ -1,7 +1,7 @@
 
 module "dynamodb_table" {
   source            = "git::https://github.com/jaydipd/dynamodb-module.git?ref=master"
-  table_name        = "test-table"
+  table_name        = "employee"
   hash_key          = "id"
   hash_key_type     = "S"
   range_key         = "timestamp"
