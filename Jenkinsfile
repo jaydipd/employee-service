@@ -51,11 +51,11 @@ pipeline {
                    --force-new-deployment
                '''
            }
-       }
+       }*/
           stage('Destroy'){
           steps {
                         bat 'cd terraform && terraform destroy -auto-approve'
                     }
-        } */
+        }
     }
 }
