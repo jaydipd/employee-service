@@ -38,5 +38,15 @@ module "step_function_employee" {
   source   = "git::https://github.com/jaydipd/step-function-module.git?ref=master"
   name     = "EmployeeWorkflow"
   role_arn = aws_iam_role.step_function_role.arn
-  definition = data.local_file.state_machine_def.content
+  definition = jsonencode({
+    Comment = "A Step Function to process Employee data"
+    StartAt = "ProcessEmployee"
+    States = {
+      ProcessEmployee = {
+        Type     = "Task"
+        Resource = aws_lambda_function.employee_processor.arn
+        End      = true
+      }
+    }
+  })
 }
