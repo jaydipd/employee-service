@@ -1,0 +1,11 @@
+{
+  "Comment": "A Step Function to process Employee data",
+  "StartAt": "ProcessEmployee",
+  "States": {
+    "ProcessEmployee": {
+      "Type": "Task",
+      "Resource": "${aws_lambda_function.employee_processor.arn}",
+      "End": true
+    }
+  }
+}
