@@ -11,11 +11,6 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/jaydipd/employee-service.git'
             }
         }
-         stage('Destroy'){
-                  steps {
-                                bat 'cd terraform && terraform destroy -auto-approve'
-                            }
-                }
         stage('Terraform Init & Plan') {
             steps {
                 bat 'cd terraform && terraform init'
