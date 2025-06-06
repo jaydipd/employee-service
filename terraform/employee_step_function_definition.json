@@ -1,5 +1,5 @@
 {
-  "Comment": "A Step Function to process Employee data",
+  "Comment": "A Step Function to process Employee information",
   "StartAt": "ProcessEmployee",
   "States": {
     "ProcessEmployee": {
