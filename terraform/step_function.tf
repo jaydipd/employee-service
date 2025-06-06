@@ -30,9 +30,13 @@ resource "aws_iam_role_policy" "step_function_policy" {
   })
 }
 
+data "local_file" "state_machine_def" {
+  filename = "${path.module}/state_machine_definition.json"
+}
 # Step Function state machine
-resource "aws_sfn_state_machine" "employee_workflow" {
-  name     = "EmployeeProcessingWorkflow"
+module "step_function" {
+  source   = "git::https://github.com/jaydipd/step-function-module.git?ref=master"
+  name     = "EmployeeWorkflow"
   role_arn = aws_iam_role.step_function_role.arn
-  definition = file("employee_step_function_definition.json")
+  definition = data.local_file.state_machine_def.content
 }
