@@ -1,7 +1,7 @@
 provider "aws" {
   region = "ap-south-1"
 }
-
+/*
 # VPC
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
@@ -68,40 +68,6 @@ resource "aws_security_group" "ecs_sg" {
   tags = {
     Name = "employee-ecs-sg"
   }
-}
-
-# DynamoDB Table
-resource "aws_dynamodb_table" "employee_table" {
-  name           = "Employee"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "id"
-  attribute {
-    name = "id"
-    type = "S"
-  }
-  tags = {
-    Name = "employee-table"
-  }
-}
-
-module "dynamodb_table" {
-  source            = "git::https://github.com/jaydipd/dynamodb-module.git?ref=master"
- # source = "./modules/dynamodb_table"
-  table_name        = "test-table"
-  hash_key          = "id"
-  hash_key_type     = "S"
-  range_key         = "timestamp"
-  range_key_type    = "N"
-  billing_mode      = "PAY_PER_REQUEST"
-  ttl_enabled       = true
-  ttl_attribute_name = "ttl"
-  tags = {
-    Environment = "Test"
-  }
-}
-
-output "table_arn" {
-  value = module.dynamodb_table.table_arn
 }
 
 # IAM Role for ECS Tasks
@@ -227,4 +193,4 @@ resource "aws_ecs_service" "employee_service" {
     subnets         = [aws_subnet.public.id]
     security_groups = [aws_security_group.ecs_sg.id]
   }
-}
+}*/

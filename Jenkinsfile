@@ -27,7 +27,7 @@ pipeline {
                 bat 'mvn clean package'
             }
         }
-        stage('Build Docker Image') {
+/*         stage('Build Docker Image') {
             steps {
                 bat 'docker build -t %ECR_REGISTRY%/%REPO_NAME%:%BUILD_NUMBER% .'
             }
@@ -56,6 +56,6 @@ pipeline {
           steps {
                         bat 'cd terraform && terraform destroy -auto-approve'
                     }
-        }
+        } */
     }
 }
