@@ -53,12 +53,12 @@ public class EncryptionUtil {
 
     public Cipher decrypt(EncryptionDetail encryptionDetail) throws IllegalBlockSizeException, BadPaddingException, NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException {
         // Step 1: Decrypt the DEK using KMS
-        DecryptRequest decryptRequest = new DecryptRequest().withCiphertextBlob(ByteBuffer.wrap(Base64.getDecoder().decode(encryptionDetail.getEncryptedKey())));
+        DecryptRequest decryptRequest = new DecryptRequest().withCiphertextBlob(ByteBuffer.wrap(encryptionDetail.getEncryptedKey()));
         ByteBuffer decryptedKey = kmsClient.decrypt(decryptRequest).getPlaintext();
 
         // Step 2: Decrypt data using AES
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding", "BC");
-        cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(decryptedKey.array(), "AES"), new IvParameterSpec(Base64.getDecoder().decode(encryptionDetail.getIv())));
+        cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(decryptedKey.array(), "AES"), new IvParameterSpec(encryptionDetail.getIv()));
         //   byte[] decryptedData = cipher.doFinal(Base64.getDecoder().decode(encryptionDetail.getCiphertext()));
         //   return new String(decryptedData, StandardCharsets.UTF_8);
         return cipher;
