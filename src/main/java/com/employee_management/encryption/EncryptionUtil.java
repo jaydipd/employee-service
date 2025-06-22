@@ -31,7 +31,7 @@ public class EncryptionUtil {
 
     public EncryptionDetail getEncryptionDetail(String kmsKeyId) throws Exception {
         // Step 1: Generate Data Encryption Key (DEK)
-        GenerateDataKeyRequest dataKeyRequest = new GenerateDataKeyRequest().withKeyId(kmsKeyId).withKeySpec("AES_256");
+        GenerateDataKeyRequest dataKeyRequest = new GenerateDataKeyRequest().withKeyId(kmsKeyId).withKeySpec("AES_128");
         GenerateDataKeyResult dataKeyResult = kmsClient.generateDataKey(dataKeyRequest);
 
         byte[] plaintextKey = dataKeyResult.getPlaintext().array();

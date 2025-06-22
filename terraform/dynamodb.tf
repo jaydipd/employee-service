@@ -4,8 +4,8 @@ module "dynamodb_table" {
   table_name        = "employee"
   hash_key          = "id"
   hash_key_type     = "S"
-  range_key         = "timestamp"
-  range_key_type    = "N"
+  range_key         = ""
+  range_key_type    = ""
   billing_mode      = "PAY_PER_REQUEST"
   ttl_enabled       = true
   ttl_attribute_name = "ttl"
