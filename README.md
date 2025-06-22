@@ -3,7 +3,7 @@
 2. Run the following command to add your authtoken to the default ngrok.yml configuration file.
    ```ngrok config add-authtoken 2xrTwqaYX7FfmJujoIqTyPmVgyz_2M44TJrGZau5zDNdHNhfg```
 3. Put your app online at an ephemeral domain forwarding to your upstream service. For example, if it is listening on port http://localhost:9001(this is jenkins URL)
-   ```ngrok http http://localhost:9001```
+   then run the following command ```ngrok http http://localhost:9001```
 
 #Steps to check if jenkins able to connect to aws.
 1.configure aws credentials(ACCESS KEY and SECRET KEY)

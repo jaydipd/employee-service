@@ -2,6 +2,7 @@ package com.employee_management.data;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
@@ -18,6 +19,7 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 @Setter
+@Builder
 public class Employee implements Serializable {
 
 
@@ -27,4 +29,12 @@ public class Employee implements Serializable {
     private String name;
 
     private double salary;
+
+    private String adharCard;
+
+    @JsonIgnore
+    private byte[] encryptedKey;
+
+    @JsonIgnore
+    private byte[] iv;
 }
