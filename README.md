@@ -21,3 +21,4 @@
                  }
                }
    ```
+#Terraform module location ```D:\terraform\hello-world```
