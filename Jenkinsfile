@@ -56,6 +56,6 @@ pipeline {
           steps {
                         bat 'cd terraform && terraform destroy -auto-approve'
                     }
-        }*/
+        } */
     }
 }
