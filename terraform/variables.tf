@@ -7,3 +7,7 @@ variable "repo_name" {
 variable "image_tag" {
   default = "latest"
 }
+variable "vpc_id" {
+  description = "The VPC ID where ECS instances will run"
+  type        = string
+}
