@@ -55,15 +55,27 @@ resource "aws_route_table_association" "b" {
   route_table_id = aws_route_table.public.id
 }
 
-resource "aws_launch_configuration" "ecs" {
-  name_prefix          = "ecs-instance"
-  image_id             = "ami-04a1f4ab261304993" # get latest api by running-> aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id --region ap-south-1 --query "Parameters[0].Value" --output text
-  instance_type        = "t3.medium"
-  iam_instance_profile = aws_iam_instance_profile.ecs_instance.name
-  user_data            = file("ecs-user-data.sh")
-  security_groups      = [aws_security_group.ecs_instances.id]
-  lifecycle {
-    create_before_destroy = true
+resource "aws_launch_template" "ecs" {
+  name_prefix   = "ecs-instance-"
+  image_id      = "ami-04a1f4ab261304993" # Replace with latest ECS-optimized AMI
+  instance_type = "t3.medium"
+
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ecs_instance.name
+  }
+
+  user_data = filebase64("ecs-user-data.sh")
+
+  network_interfaces {
+    security_groups = [aws_security_group.ecs_instances.id]
+    associate_public_ip_address = true
+  }
+
+  tag_specifications {
+    resource_type = "instance"
+    tags = {
+      Name = "ecs-instance"
+    }
   }
 }
 
@@ -73,15 +85,21 @@ resource "aws_autoscaling_group" "ecs" {
   min_size                  = 1
   desired_capacity          = 1
   vpc_zone_identifier       = [aws_subnet.public1.id, aws_subnet.public2.id]
-  launch_configuration      = aws_launch_configuration.ecs.name
   health_check_type         = "EC2"
   force_delete              = true
+
+  launch_template {
+    id      = aws_launch_template.ecs.id
+    version = "$Latest"
+  }
+
   tag {
     key                 = "Name"
     value               = "ecs-instance"
     propagate_at_launch = true
   }
 }
+
 resource "aws_security_group" "ecs_instances" {
   name        = "ecs-instances-sg"
   description = "Allow ECS instance traffic"
