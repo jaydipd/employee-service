@@ -57,7 +57,7 @@ resource "aws_route_table_association" "b" {
 
 resource "aws_launch_configuration" "ecs" {
   name_prefix          = "ecs-instance"
-  image_id             = "ami-0dc2d3e4c0f9ebd18" # Amazon ECS-optimized AMI for your region
+  image_id             = "ami-04a1f4ab261304993" # get latest api by running-> aws ssm get-parameters --names /aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id --region ap-south-1 --query "Parameters[0].Value" --output text
   instance_type        = "t3.medium"
   iam_instance_profile = aws_iam_instance_profile.ecs_instance.name
   user_data            = file("ecs-user-data.sh")
