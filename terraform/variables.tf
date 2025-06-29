@@ -10,4 +10,5 @@ variable "image_tag" {
 variable "vpc_id" {
   description = "The VPC ID where ECS instances will run"
   type        = string
+  default = "my-employee-service-vpc"
 }
