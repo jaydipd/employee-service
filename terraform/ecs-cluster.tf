@@ -85,7 +85,7 @@ resource "aws_autoscaling_group" "ecs" {
 resource "aws_security_group" "ecs_instances" {
   name        = "ecs-instances-sg"
   description = "Allow ECS instance traffic"
-  vpc_id      = var.vpc_id  # <-- Ensure this variable is defined or replace with actual VPC ID
+  vpc_id      = aws_vpc.main.id  # <-- Ensure this variable is defined or replace with actual VPC ID
 
   ingress {
     from_port   = 8080
