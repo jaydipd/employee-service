@@ -5,7 +5,7 @@ variable "repo_name" {
   default = "employee-service"
 }
 variable "image_tag" {
-  default = "latest"
+  default = "77"
 }
 variable "vpc_id" {
   description = "The VPC ID where ECS instances will run"
