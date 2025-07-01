@@ -38,10 +38,10 @@ pipeline {
         bat 'docker push %ECR_REGISTRY%/%REPO_NAME%:%BUILD_NUMBER%'
     }
 }
-   /*        stage('Destroy'){
+      stage('Destroy'){
           steps {
                         bat 'cd terraform && terraform destroy -auto-approve'
                     }
-        } */
+        }
     }
 }
